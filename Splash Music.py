@@ -3,7 +3,7 @@ import os
 import asyncio
 import youtube_dl
 
-token = "******************************************************************"
+token = "OTE0NTk3NjE5MTE5MDU0OTIw.GhBGU1.UhcCQApyIkwyFdchSR_qPXbSkuY7Kw99vVXCDQ"
 client = discord.Client()
 
 voice_clients = {}
@@ -22,6 +22,9 @@ async def on_ready():
 
 @client.event
 async def on_message(msg):
+
+
+
     if msg.content.startswith("!play"):
 
         try:
@@ -49,6 +52,7 @@ async def on_message(msg):
     if msg.content.startswith("!pause"):
         try:
             voice_clients[msg.guild.id].pause()
+            await msg.channel.send(f"Player has been paused by {msg.author.display_name}")
 
         except Exception as err:
             print(err)
@@ -57,6 +61,7 @@ async def on_message(msg):
     if msg.content.startswith("!resume"):
             try:
                 voice_clients[msg.guild.id].resume()
+                await msg.channel.send(f"Player has been resumed by {msg.author.display_name}")
 
             except Exception as err:
                 print(err)
@@ -72,8 +77,20 @@ async def on_message(msg):
             try:
                 voice_clients[msg.guild.id].stop()
                 await voice_clients[msg.guild.id].disconnect()
+                await msg.channel.send(f"Player has been stopped by {msg.author.display_name}")
 
             except Exception as err:
                 print(err)
+
+
+    if msg.content.startswith("!leave"):
+        try:
+            voice_clients[msg.guild.id].stop()
+            await voice_clients[msg.guild.id].disconnect()
+            await msg.channel.send(f"{msg.author.display_name} kicked me :(")
+
+        except Exception as err:
+            print(err)
+
    
 client.run(token)
