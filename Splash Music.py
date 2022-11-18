@@ -3,7 +3,7 @@ import os
 import asyncio
 import youtube_dl
 
-token = "OTE0NTk3NjE5MTE5MDU0OTIw.GhBGU1.UhcCQApyIkwyFdchSR_qPXbSkuY7Kw99vVXCDQ"
+token = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
 client = discord.Client()
 
 voice_clients = {}
